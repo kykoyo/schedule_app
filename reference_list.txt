@@ -1,3 +1,7 @@
 
 Railsのビューヘルパー(View Helper)のまとめ
 http://ruby-rails.hatenadiary.com/entry/20150113/1421149061
+
+Railsのログイン認証gemのDeviseのカスタマイズ方法
+http://ruby-rails.hatenadiary.com/entry/20140804/1407168000
+

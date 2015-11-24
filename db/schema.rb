@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124054435) do
+ActiveRecord::Schema.define(version: 20151124082509) do
 
   create_table "events", force: true do |t|
     t.datetime "created_at"
@@ -42,8 +42,7 @@ ActiveRecord::Schema.define(version: 20151124054435) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "username"
     t.string   "user_type"
   end
 
