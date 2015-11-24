@@ -1,0 +1,33 @@
+<% if flash[:errors] %>
+<ul>
+    <% flash[:errors].each do |error_line| %>
+    <ol>
+        <%= error_line %>
+    </ol>
+    <% end %>
+</ul>
+<% end %>
+
+<%= form_for @event do |f| %>
+<p>
+    <%= f.label :title %><br>
+    <%= f.text_field  :title %>
+</p>
+
+<% User.all.each do |user| %>
+<%= f.check_box :user_id, {}, user.id %>
+<%= f.label :user_id, user.email, :value=>user.id %>
+<% end %>
+
+
+<p>
+    <%= f.label :held_at %><br>
+    <%= f.datetime_field :held_at %>
+</p>
+<!-- <p>
+    <%= f.hidden_field :token, value: @token %>
+</p>
+ --><p>
+    <%= f.submit %>
+</p>
+<% end %>

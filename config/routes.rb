@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'home/index'
+  get 'users', to: 'users#index', as: 'users'
 
   devise_for :users
 
