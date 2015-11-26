@@ -13,12 +13,12 @@
     <%= f.label :title %><br>
     <%= f.text_field  :title %>
 </p>
-
 <% User.all.each do |user| %>
-<%= f.check_box :user_id, {}, user.id %>
-<%= f.label :user_id, user.email, :value=>user.id %>
+<p>
+<%= check_box_tag "event[user_ids][]", user.id, @event.users.include?(user), id: "events_user_ids_#{user.id}" %>
+<%= label_tag "events[user_ids][#{user.id}]", user.username %>
+</p>
 <% end %>
-
 
 <p>
     <%= f.label :held_at %><br>

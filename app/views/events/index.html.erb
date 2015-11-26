@@ -1,11 +1,13 @@
-<h1>Events you were invited<h1>
-    <%= link_to 'Create new event', new_event_path %>
+<h1>Events you were invited</h1>
+<%= link_to 'Create new event', new_event_path %>
 <ul>
+    <h3>Created</h3>
     <% @owner_events.each do |owner_events| %>
     <li> <%= link_to owner_events.title, edit_event_path(owner_events.id) %>|<%= link_to 'Delete', event_path(owner_events.id), method: :delete, data:{confirm: "are you sure?"} %></li>
     <% end %>
 </ul>
 <ul>
+    <h3>Invited</h3>
     <% @invited_events.each do |invited_events| %>
     <li> <%= link_to invited_events.title, edit_event_path(invited_events.id) %>|<%= link_to 'Delete', event_path(invited_events.id), method: :delete, data:{confirm: "are you sure?"} %></li>
     <% end %>

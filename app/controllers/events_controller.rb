@@ -4,8 +4,8 @@ class EventsController < ApplicationController
 
     def index
         #自分が開催するイベント及び招待されたイベントを表示する
-        @owner_events=Event.where(owner_id: current_user)
-        @invited_events=Event.where(user_id: current_user)
+        @owner_events=User.find(current_user).created_events
+        @invited_events=User.find(current_user).events
     end
     def show
         #作成したイベントの詳細を表示
@@ -15,7 +15,7 @@ class EventsController < ApplicationController
         @event=Event.new
     end
     def create
-        event_params=params[:event].permit(:title, :user_id, :held_at)
+        event_params=params.require(:event).permit(:title, {:user_ids => []}, :held_at)
         @event=Event.new(event_params)
         @event.owner=current_user
 
