@@ -20,6 +20,9 @@ class EventsController < ApplicationController
         @event.owner=current_user
 
         @event.save
+
+        set_suggestion_date
+
         render 'show'
     end
     def destroy
@@ -40,4 +43,19 @@ class EventsController < ApplicationController
         @event.update(event_params)
         render 'show'
     end
+
+
+    private
+    #入力されたテキストを元に候補日を作成する
+    def set_suggestion_date
+        suggestion_obj=params[:Suggestion_Date]
+        suggestion_lines=suggestion_obj.split("\n")
+
+        suggestion_lines.each do |line|
+            line.chomp!
+            suggestion_date=Suggestion.new(suggestion_date: line, event_id: @event.id, count_good: 0, count_soso: 0, count_bad: 0)
+            suggestion_date.save
+        end
+    end
+
 end

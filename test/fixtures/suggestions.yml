@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  suggested_date: 2015-11-26 17:54:25
+  count_good: 1
+  count_soso: 1
+  count_bad: 1
+  event_id: 1
+
+two:
+  suggested_date: 2015-11-26 17:54:25
+  count_good: 1
+  count_soso: 1
+  count_bad: 1
+  event_id: 1

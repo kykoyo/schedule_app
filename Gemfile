@@ -41,3 +41,10 @@ gem 'spring',        group: :development
 gem 'dotenv'
 
 gem 'devise'
+
+gem 'therubyracer'
+
+gem 'less-rails'
+
+#Use bootstrap for front-end design
+gem 'twitter-bootstrap-rails'

@@ -4,4 +4,6 @@ class Event < ActiveRecord::Base
 
     # More readable alternative to belongs_to :user
     belongs_to :owner, class_name: 'User'
+
+    has_many :suggestions, dependent: :destroy
 end

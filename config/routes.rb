@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'home/index'
   get 'users', to: 'users#index', as: 'users'
+  get 'users/:id/edit_user_suggestion', to: 'users#edit_user_suggestion', as: 'edit_user_suggestion'
+  put 'users/:id', to: 'users#update_user_suggestion', as: 'user_suggestion'
 
   devise_for :users
 

@@ -21,8 +21,8 @@
 <% end %>
 
 <p>
-    <%= f.label :held_at %><br>
-    <%= f.datetime_field :held_at %>
+    <%= label_tag "Suggestion Date" %><br>
+    <%= text_area_tag "Suggestion_Date", "", row: 10 %>
 </p>
 <!-- <p>
     <%= f.hidden_field :token, value: @token %>
