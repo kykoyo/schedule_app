@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
     has_many :user_suggestions, dependent: :destroy
     has_many :suggestions, through: :user_suggestions
+    accepts_nested_attributes_for :user_suggestions
 
     #幹事がいなくなったらイベントが消えるように設定
     has_many :created_events, class_name: 'Event', foreign_key: :owner_id, dependent: :destroy

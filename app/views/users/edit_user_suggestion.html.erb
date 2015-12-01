@@ -29,7 +29,7 @@
 <p>
     <%= f.hidden_field :event, @event.id %>
 </p>
-<%= fields_for @user_suggestions do |user_suggestion| %>
+<%= f.fields_for @user_suggestions do |user_suggestion| %>
 <p>
     <%= user_suggestion.label :tag %>
     <%= user_suggestion.select :tag, options_for_select({' '=>'0', '◎'=>'1', '△'=>'2', '×'=>'3'}) %>

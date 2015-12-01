@@ -8,7 +8,7 @@
 </ul>
 <% end %>
 
-<%= form_for @event do |f| %>
+<%= form_for(@event, :url => user_events_path(@user, @event)) do |f| %>
 <p>
     <%= f.label :title %><br>
     <%= f.text_field  :title %>

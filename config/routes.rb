@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
   get 'home/index'
-  get 'users', to: 'users#index', as: 'users'
-  get 'users/:id/edit_user_suggestion', to: 'users#edit_user_suggestion', as: 'edit_user_suggestion'
-  put 'users/:id', to: 'users#update_user_suggestion', as: 'user_suggestion'
+
+  # get 'users/:id/edit_user_suggestion', to: 'users#edit_user_suggestion', as: 'edit_user_suggestion'
+  # put 'users/:id', to: 'users#update_user_suggestion', as: 'user_suggestion'
+
+  # get 'users/:user_id/events/:event_id/new_user_suggestion', to: 'users#new_user_suggestion', as: 'new_user_suggestion'
 
   devise_for :users
 
-  resources :events
+  resources :users, only: [:index, :update] do
+    resources :events do
+      resource :user_suggestion
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

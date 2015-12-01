@@ -12,9 +12,11 @@ class EventsController < ApplicationController
         @event=Event.find(params[:id])
     end
     def new
-        @event=Event.new
+        @user=User.find(params[:user_id])
+        @event=Event.new()
     end
     def create
+        @user=User.find(params[:user_id])
         event_params=params.require(:event).permit(:title, {:user_ids => []}, :held_at)
         @event=Event.new(event_params)
         @event.owner=current_user
@@ -29,7 +31,7 @@ class EventsController < ApplicationController
         @event=Event.find(params[:id])
         @event.destroy
         if @event.destroy
-            redirect_to events_path, notice: "Event deleted"
+            redirect_to user_events_path, notice: "Event deleted"
         end
 
     end
@@ -55,6 +57,9 @@ class EventsController < ApplicationController
             line.chomp!
             suggestion_date=Suggestion.new(suggestion_date: line, event_id: @event.id, count_good: 0, count_soso: 0, count_bad: 0)
             suggestion_date.save
+            @event.users.each do |user|
+                user_suggestion=UserSuggestion.create(user_id: user.id, suggestion_id: suggestion_date.id, tag: 0)
+            end
         end
     end
 

@@ -7,8 +7,18 @@ class UsersController < ApplicationController
     end
     
   end
+  def update
+    @user=User.find(params[:id])
+    user_suggestion_params=params.require(:user).permit(user_suggestions_attributes: [:id, :suggestion_date, :tag])        
+    @user.update(user_suggestion_params)
+    render 'index'
+  end
+
   def new_user_suggestion
-    current_user.user_suggestion.build
+    @event=Event.find(params[:event_id])
+    @user=User.find(params[:user_id])
+    @user_suggestions=UserSuggestion.new()
+    @user.user_suggestions.build
   end
   def create_user_suggestion
   end
