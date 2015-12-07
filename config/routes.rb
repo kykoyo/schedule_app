@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get 'users/:user_id/events/:id/determine_date', to: 'events#determine_date', as: 'determine_date'
+  patch 'users/:user_id/events/:id/determine_date', to: 'events#determine_post', as: 'determine_post'
+  patch 'users/:user_id/events/:id/determine_cancel', to: 'events#determine_cancel', as: 'determine_cancel'
+
   resources :users, only: [:index, :update] do
     resources :events do
       resource :user_suggestion

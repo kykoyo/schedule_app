@@ -1,0 +1,36 @@
+<h1>Determine_date</h1>
+
+<table class="table table-striped">
+    <tr>
+        <td>候補日程</td>
+        <td>◎</td>
+        <td>△</td>
+        <td>×</td>
+    </tr>
+    <% @suggestions.each do |suggestion| %>
+    <% count_hash=suggestion.suggestion_hash[0] %>
+    <% user_hash=suggestion.suggestion_hash[1] %>
+    <tr>
+        <td><%= suggestion.suggestion_date %></td>
+        <td><%= count_hash[1] %></td>
+        <td><%= count_hash[2] %></td>
+        <td><%= count_hash[3] %></td>
+        <td>
+            <%= form_for @event, :url => determine_post_path(@user, @event) do |f| %>
+            <%= f.hidden_field :held_at, value: suggestion.suggestion_date %>
+            <%= f.submit '日付を確定', name: suggestion.id %>
+            <% end %>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <% for i in [1, 2, 3] %>
+        <td>
+        <% user_hash[i].each do |user| %>
+            <%= user.username %><br>
+        <% end %>
+        </td>
+        <% end %>
+    </tr>
+    <% end %>
+</table>

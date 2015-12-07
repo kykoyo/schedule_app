@@ -8,11 +8,17 @@
 </ul>
 <% end %>
 
-<%= form_for(@event, :url => user_events_path(@user, @event)) do |f| %>
+<%= form_for [@user, @event] do |f| %>
 <p>
     <%= f.label :title %><br>
     <%= f.text_field  :title %>
 </p>
+<p>
+    <%= f.label :price %>
+    <a href='https://docs.google.com/document/d/1y0kV64edndOKLhZYa4j9j_y6LfdWyhdxskJ2Od3zg5Y/edit' target="_blank"> 会費について</a><br>
+    <%= f.text_field :price %>
+</p>
+
 <% User.all.each do |user| %>
 <p>
 <%= check_box_tag "event[user_ids][]", user.id, @event.users.include?(user), id: "events_user_ids_#{user.id}" %>
@@ -22,7 +28,7 @@
 
 <p>
     <%= label_tag "Suggestion Date" %><br>
-    <%= text_area_tag "Suggestion_Date", "", row: 10 %>
+    <%= text_area_tag "Suggestion_Date", @suggestions, row: 10, size: "60x5" %>
 </p>
 <!-- <p>
     <%= f.hidden_field :token, value: @token %>

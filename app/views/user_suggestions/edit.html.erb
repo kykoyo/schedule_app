@@ -3,17 +3,15 @@
     <%= @event.title %>
 </p>
 
-<%= form_for(@user) do |f| %>
+<%= form_for @user do |f| %>
 <%= f.fields_for :user_suggestions, @user_suggestions do |user_suggestion| %>
 <p>
-    <%= user_suggestion.label :suggestion_date %>
-</p>
-<p>
-    <%= user_suggestion.label :tag %>
-    <%= user_suggestion.select :tag, options_for_select({' '=>'0', '◎'=>'1', '△'=>'2', '×'=>'3'}) %>
+    <%= user_suggestion.label :tag, user_suggestion.object.suggestion.suggestion_date %>
+    <%= user_suggestion.select :tag, options_for_select({' '=>"0", '◎'=>"1", '△'=>"2", '×'=>"3"}, :selected => user_suggestion.object.tag.to_s) %>
 </p>
 <% end %>
 <p>
     <%= f.submit %>
 </p>
 <% end %>
+

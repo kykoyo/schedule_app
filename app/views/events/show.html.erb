@@ -4,12 +4,16 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name('イベント名') %>:</strong></dt>
   <dd><%= @event.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:owner_id) %>:</strong></dt>
-  <dd><%= @event.owner_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name('幹事') %>:</strong></dt>
+  <dd><%= @event.owner.username %></dd>
+  <% if @event.held_at %>
+  <dt><strong><%= model_class.human_attribute_name('時間') %>:</strong></dt>
+  <dd><%= @event.held_at %></dd>
+  <% end %>
+    <dt><strong><%= model_class.human_attribute_name('参加者') %>:</strong></dt>
   <% @event.users.each do |user| %>
-    <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
   <dd>
     <%= user.username %>
   </dd>
@@ -17,7 +21,7 @@
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              user_events_path, :class => 'btn btn-default'  %>
+              user_events_path(@user), :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_user_event_path(@user, @event), :class => 'btn btn-default' %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
