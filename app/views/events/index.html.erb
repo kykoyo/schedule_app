@@ -3,108 +3,15 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 <% if @determined_events != [] %>
-<h3>Determined</h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name('イベント名') %></th>
-      <th><%= model_class.human_attribute_name('幹事') %></th>
-      <th><%= model_class.human_attribute_name('参加者') %></th>
-      <th><%= model_class.human_attribute_name('時間') %></th>
-      <th><%= model_class.human_attribute_name('会費') %></th>
-      <th><%= model_class.human_attribute_name('作成日') %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @determined_events.each do |event| %>
-      <tr>
-        <td><%= event.title %></td>
-        <td><%= event.owner.username %></td>
-        <td><% event.users.each do |user| %>
-            <%=user.username%>, 
-        <% end %></td>
-        <td><%= event.held_at %></td>
-        <td><%= event.price %></td>
-        <td><%= event.created_at %></td>
-        <td>
-          <%= link_to t('ビュー'),
-                      user_event_path(current_user, event), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('日付を変更'),
-                      determine_cancel_path(current_user, event), :method => :patch, 
-                      :class => 'btn btn-default btn-xs' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <h3>Determined</h3>
+  <%= render partial: 'table', locals: { events: @determined_events, type: :determined } %>
 <% end %>
 
 <h3>Created</h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name('イベント名') %></th>
-      <th><%= model_class.human_attribute_name('幹事') %></th>
-      <th><%= model_class.human_attribute_name('招待者') %></th>
-      <th><%= model_class.human_attribute_name('会費') %></th>
-      <th><%= model_class.human_attribute_name('作成日') %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @created_events.each do |event| %>
-      <tr>
-        <td><%= event.title %></td>
-        <td><%= event.owner.username %></td>
-        <td><% event.users.each do |user| %>
-            <%=user.username%>, 
-        <% end %></td>
-        <td><%= event.price %></td>
-        <td><%= event.created_at %></td>
-        <td>
-          <%= link_to t('編集'),
-                      edit_user_event_path(current_user, event), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('削除'),
-                      user_event_path(current_user, event),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
-          <%= link_to t('日付を確定'),
-                      determine_date_path(current_user, event), :class => 'btn btn-default btn-xs' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render partial: 'table', locals: { events: @created_events, type: :created } %>
 
 <h3>Invited</h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name('イベント名') %></th>
-      <th><%= model_class.human_attribute_name('幹事') %></th>
-      <th><%= model_class.human_attribute_name('招待者') %></th>
-      <th><%= model_class.human_attribute_name('会費') %></th>
-      <th><%= model_class.human_attribute_name('作成日') %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @invited_events.each do |event| %>
-      <tr>
-        <td><%= event.title %></td>
-        <td><%= event.owner.username %></td>
-        <td><% event.users.each do |user| %>
-            <%=user.username%>, 
-        <% end %></td>
-        <td><%= event.price %></td>
-        <td><%= event.created_at %></td>
-        <td>
-          <%= link_to t('出欠を入力'),
-                      edit_user_event_user_suggestion_path(current_user, event), :class => 'btn btn-default btn-xs' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render partial: 'table', locals: { events: @invited_events, type: :invited } %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_user_event_path(current_user),

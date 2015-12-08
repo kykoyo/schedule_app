@@ -1,0 +1,31 @@
+<%- model_class = Event -%>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th><%= model_class.human_attribute_name('イベント名') %></th>
+    <th><%= model_class.human_attribute_name('幹事') %></th>
+    <th><%= user_label(type) %></th>
+    <% if type == :determined %>
+      <th><%= model_class.human_attribute_name('時間') %></th>
+    <% end %>
+    <th><%= model_class.human_attribute_name('会費') %></th>
+    <th><%= model_class.human_attribute_name('作成日') %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% events.each do |event| %>
+    <tr>
+      <td><%= event.title %></td>
+      <td><%= event.owner.username %></td>
+      <td><% event.users.each do |user| %>
+          <%=user.username%>,
+        <% end %></td>
+      <td><%= event.held_at %></td>
+      <td><%= event.price %></td>
+      <td><%= event.created_at %></td>
+      <td><%= action_link(type, event) %></td>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
