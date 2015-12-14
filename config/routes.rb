@@ -12,11 +12,14 @@ Rails.application.routes.draw do
   patch 'users/:user_id/events/:id/determine_date', to: 'events#determine_post', as: 'determine_post'
   patch 'users/:user_id/events/:id/determine_cancel', to: 'events#determine_cancel', as: 'determine_cancel'
 
-  resources :users, only: [:index, :update] do
+  resources :users, only: [:update] do
     resources :events do
-      resource :user_suggestion
+      resource :user_suggestion, only: [:edit]
     end
   end
+
+  get 'users/:user_id/events/:id/show_determine', to: 'events#show_determine', as: 'show_determine'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

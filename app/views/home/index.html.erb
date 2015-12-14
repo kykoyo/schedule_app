@@ -1,12 +1,13 @@
-<h1>超整さん</h1>
-<p>あなたの日程を超整。。。</p>
-<p class="navbar-text pull-right">
+<h1>スケジューリングアプリ</h1>
+<p>ユーザ登録して日程調整しよう！</p>
+<p>
 <% if user_signed_in? %>
   Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>|
-  <%= link_to "Event", user_events_path(current_user), :class => 'navbar-link'  %>
+  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-default' %> 
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'btn btn-default'  %>
+  <%= link_to "Event", user_events_path(current_user), :class => 'btn btn-default'  %>
 <% else %>
-  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+  <%= link_to "新規登録", new_user_registration_path, :class => 'btn btn-default'  %> 
+  <%= link_to "ログイン", new_user_session_path, :class => 'btn btn-default'  %>
 <% end %>
+</p>

@@ -1,15 +1,5 @@
 class UserSuggestionsController < ApplicationController
-    def new
-        @user=User.find(params[:user_id])
-        @event=Event.find(params[:event_id])
-        @user_suggestions=UserSuggestion.new()
-        @user.user_suggestions.build
-    end
-    
-    def create
-        user_suggestion_params = params.require(:user).permit(user_suggestions_attributes: [:id, :suggestion_date, :tag])
-    end
-
+    #eventを作成した時に初期値を設定しているのでnewとcreateはかかない
     def edit
         @user = User.find(params[:user_id])
         @event = Event.find(params[:event_id])
@@ -21,11 +11,5 @@ class UserSuggestionsController < ApplicationController
         @user_suggestions.flatten!
 
     end
-
-    # def update
-    #     user_suggestion_params = params.require(:user).permit(user_suggestions_attributes: [:id, :suggestion_date, :tag])        
-    #     @user_suggestions.update(user_suggestion_params)
-    #     redirect_to user_events_path(current_user)
-    # end
 
 end

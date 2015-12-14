@@ -3,7 +3,7 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
   <div class="field">
-    <%= f.label :username %><br />
+    <%= f.label :username, 'ユーザ名（他の人がわかる名前にしよう）' %><br />
     <%= f.text_field :username, autofocus: true %>
   </div>
 
@@ -13,7 +13,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :user_type %><br />
+    <%= f.label :user_type, '役職' %><br />
     <%= f.select :user_type, {'社員'=>'社員','インターン'=>'インターン'} %>
   </div>
 
@@ -23,27 +23,27 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :password, '新しいパスワード' %> <i>(変更したい場合のみ入力)</i><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, 'パスワードをもう一度入力' %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :current_password, '既存のパスワード' %> <i>(変更がある場合、必須)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "プロフィールを変更" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h3>アカウントを削除</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>アカウントを削除しますか？ <%= button_to "削除", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>

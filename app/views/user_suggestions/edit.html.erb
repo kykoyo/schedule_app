@@ -1,4 +1,4 @@
-<h1>Vote for dates</h1>
+<h1>出欠を入力</h1>
 <p>
     <%= @event.title %>
 </p>
@@ -10,8 +10,10 @@
     <%= user_suggestion.select :tag, options_for_select({' '=>"0", '◎'=>"1", '△'=>"2", '×'=>"3"}, :selected => user_suggestion.object.tag.to_s) %>
 </p>
 <% end %>
-<p>
-    <%= f.submit %>
-</p>
+<span>
+    <%= f.submit '出欠を入力', :class=> 'btn btn-default' %>
 <% end %>
 
+<%= link_to '戻る',
+              user_events_path(@user), :class => 'btn btn-default'  %>
+</span>

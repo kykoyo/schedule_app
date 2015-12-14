@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207073548) do
+ActiveRecord::Schema.define(version: 20151213194505) do
 
   create_table "events", force: true do |t|
     t.datetime "created_at"
@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20151207073548) do
     t.string   "title"
     t.integer  "owner_id"
     t.integer  "user_id"
-    t.text     "held_at"
     t.integer  "price"
+    t.integer  "determine_date_id"
   end
 
   create_table "suggestions", force: true do |t|

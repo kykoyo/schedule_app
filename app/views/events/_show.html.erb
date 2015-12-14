@@ -1,0 +1,32 @@
+<%- model_class = Event -%>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name('イベント名') %>:</strong></dt>
+  <dd><%= event.title %></dd>
+
+  <dt><strong><%= model_class.human_attribute_name('幹事') %>:</strong></dt>
+  <dd><%= event.owner.username %></dd>
+
+  <dt><strong><%= model_class.human_attribute_name('会費') %>:</strong></dt>
+  <dd><%= event.price %></dd>
+
+  <% if event.determine_date %>
+    <dt><strong><%= model_class.human_attribute_name('時間') %>:</strong></dt>
+    <dd><%= event.determine_date.suggestion_date %></dd>
+  <% end %>
+
+  <dt><strong><%= model_class.human_attribute_name('参加者') %>:</strong></dt>
+  <dd>
+    <%= event_column(event, type) %>
+  </dd>
+</dl>
+
+<%= link_to '戻る',
+              user_events_path(@user), :class => 'btn btn-default'  %>
+<%= link_to '編集', 
+              edit_user_event_path(@user, event), :class => 'btn btn-default' %>
+<%= link_to '削除', 
+              user_event_path(@user, event),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

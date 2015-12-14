@@ -1,0 +1,5 @@
+<%- model_class = Event -%>
+<div class="page-header">
+  <h1>イベントの日程を確定しました</h1>
+</div>
+<%= render :partial => 'show', locals: {event: @event, type: :determined} %>

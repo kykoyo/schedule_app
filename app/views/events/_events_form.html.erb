@@ -10,24 +10,25 @@
 
 <%= form_for [@user, @event] do |f| %>
 <p>
-    <%= f.label :title %><br>
+    <%= f.label :title, 'イベント名' %><br>
     <%= f.text_field  :title %>
 </p>
 <p>
-    <%= f.label :price %>
+    <%= f.label :price, '一人当たりの会費' %>
     <a href='https://docs.google.com/document/d/1y0kV64edndOKLhZYa4j9j_y6LfdWyhdxskJ2Od3zg5Y/edit' target="_blank"> 会費について</a><br>
     <%= f.text_field :price %>
 </p>
 
-<% User.all.each do |user| %>
 <p>
+    参加者:<br>
+<% User.all.each do |user| %>
 <%= check_box_tag "event[user_ids][]", user.id, @event.users.include?(user), id: "events_user_ids_#{user.id}" %>
 <%= label_tag "events[user_ids][#{user.id}]", user.username %>
 </p>
 <% end %>
 
 <p>
-    <%= label_tag "Suggestion Date" %><br>
+    <%= label_tag "Suggestion Date", '候補日（改行で区切る）' %><br>
     <%= text_area_tag "Suggestion_Date", @suggestions, row: 10, size: "60x5" %>
 </p>
 <!-- <p>
