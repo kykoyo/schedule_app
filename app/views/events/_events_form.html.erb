@@ -31,10 +31,14 @@
     <%= label_tag "Suggestion Date", '候補日（改行で区切る）' %><br>
     <%= text_area_tag "Suggestion_Date", @suggestions, row: 10, size: "60x5" %>
 </p>
-<!-- <p>
-    <%= f.hidden_field :token, value: @token %>
-</p>
- --><p>
-    <%= f.submit %>
+<p>
+<% if type==:new %>
+    <%= f.submit 'イベントを作成', :class => 'btn btn-default' %>
+<% else %>
+    <%= f.submit 'イベントを編集', :class => 'btn btn-default' %>
+<% end %>    
 </p>
 <% end %>
+
+<%= link_to '戻る',
+              user_events_path(@user), :class => 'btn btn-default'  %>

@@ -64,21 +64,7 @@
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-        <div class="col-lg-3">
-          <div class="well sidebar-nav">
-            <h3>Sidebar</h3>
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to 'プロフィール', edit_user_registration_path, :class => 'navbar-link' %></li>
-              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
-              <% if current_user!=nil %>
-              <li><%= link_to "イベント", user_events_path(current_user), :class => 'navbar-link'  %></li>
-              <% end %>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-      </div><!--/row-->
-      
+      </div>      
       <br>
       <br>
       <br>

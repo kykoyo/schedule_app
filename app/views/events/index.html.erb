@@ -2,15 +2,29 @@
 <div class="page-header">
   <h1>イベント一覧</h1>
 </div>
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">確定したイベント</a></li>
+    <li><a href="#tab2" data-toggle="tab">幹事のイベント</a></li>
+    <li><a href="#tab3" data-toggle="tab">参加者のイベント</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <h3>確定したイベント</h3>
+      <%= render :partial => 'table', locals: {events: @determined_events, type: :determined} %>
+    </div>
 
-<h3>確定したイベント</h3>
-<%= render :partial => 'table', locals: {events: @determined_events, type: :determined} %>
+    <div class="tab-pane" id="tab2">
+      <h3>幹事のイベント</h3>
+      <%= render :partial => 'table', locals: {events: @created_events, type: :created} %>
+    </div>
 
-<h3>参加者のイベント</h3>
-<%= render :partial => 'table', locals: {events: @created_events, type: :created} %>
-
-<h3>参加者のイベント</h3>
-<%= render :partial => 'table', locals: {events: @invited_events, type: :invited} %>
+    <div class="tab-pane" id="tab3">
+      <h3>参加者のイベント</h3>
+      <%= render :partial => 'table', locals: {events: @invited_events, type: :invited} %>
+    </div>
+  </div>
+</div>
 
 <%= link_to '新しいイベント', 
             new_user_event_path(current_user),

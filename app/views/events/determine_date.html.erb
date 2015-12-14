@@ -20,7 +20,7 @@
         <td>
             <%= form_for @event, :url => determine_post_path(@user, @event) do |f| %>
             <%= f.hidden_field :determine_date_id, value: suggestion.id %>
-            <%= f.submit '日付を確定', name: suggestion.id %>
+            <%= f.submit '日付を確定', name: suggestion.id, :class => 'btn btn-default' %>
             <% end %>
         </td>
     </tr>
